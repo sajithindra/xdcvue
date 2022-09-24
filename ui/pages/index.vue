@@ -40,6 +40,20 @@
   import Web3 from "xdc3"
 export default {
   name: 'IndexPage',
+  async mounted () {
+    if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        this.connected = true;
+      } else if (window.web3) {
+        window.web3 = new Web3(window.web3.currentProvider);
+      } else {
+        window.alert("Non-Xinfin browser detected. You should consider trying XDCpay");
+      }
+      const web3 = window.web3;
+      const accounts = await web3.eth.getAccounts();
+      let accountBalance = await web3.eth.getBalance(accounts[0])
+
+  },
   data: () => ({
     connected:false,
     balance:0,
@@ -49,17 +63,7 @@ export default {
     async get(){
       let contractAddress = "xdc4E09655eA0C15f2c40F22816d59E1a9Bf529627d"
       var abi = require('./abi.json');
-      if (window.ethereum) {
-        window.web3 = new Web3(window.ethereum);
-        this.connected = true;
-      } else if (window.web3) {
-        window.web3 = new Web3(window.web3.currentProvider);
-      } else {
-        window.alert("Non-Xinfin browser detected. You should consider trying XDCpay");
-      }
-      const web3 = window.web3;
-      const accounts = await web3.eth.getAccounts();
-      let accountBalance = await web3.eth.getBalance(accounts[0])
+      
       let contract = new web3.eth.Contract(abi, contractAddress)
       let value =await contract.methods.retrieve().call()
       this.balance = value;
@@ -68,17 +72,6 @@ export default {
     async push(){
       let contractAddress = "xdc4E09655eA0C15f2c40F22816d59E1a9Bf529627d"
       var abi = require('./abi.json');
-      if (window.ethereum) {
-        window.web3 = new Web3(window.ethereum);
-        this.connected = true;
-      } else if (window.web3) {
-        window.web3 = new Web3(window.web3.currentProvider);
-      } else {
-        window.alert("Non-Xinfin browser detected. You should consider trying XDCpay");
-      }
-      const web3 = window.web3;
-      const accounts = await web3.eth.getAccounts();
-      let accountBalance = await web3.eth.getBalance(accounts[0])
       let contract = new web3.eth.Contract(abi, contractAddress)
       let result = await contract.methods.store(this.input).send({from:'xdc4a0ff01c148baac9f0e944439627b175d1c5280b'});
       console.log(result);
