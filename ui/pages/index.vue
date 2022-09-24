@@ -63,7 +63,6 @@ export default {
     async get(){
       let contractAddress = "xdc4E09655eA0C15f2c40F22816d59E1a9Bf529627d"
       var abi = require('./abi.json');
-      
       let contract = new web3.eth.Contract(abi, contractAddress)
       let value =await contract.methods.retrieve().call()
       this.balance = value;
