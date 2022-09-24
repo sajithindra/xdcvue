@@ -40,6 +40,7 @@
   import Web3 from "xdc3"
 export default {
   name: 'IndexPage',
+  // the connection to wallet is checked using when mounted
   async mounted () {
     if (window.ethereum) {
         window.web3 = new Web3(window.ethereum);
@@ -61,10 +62,15 @@ export default {
   }),
   methods:{
     async get(){
+      // the contract address is defined in the call because if we need to call a different contract we can do that 
       let contractAddress = "xdc4E09655eA0C15f2c40F22816d59E1a9Bf529627d"
+      // import  the abi . please change the abi if you are using a different contract
       var abi = require('./abi.json');
+      // declaring the contract
       let contract = new web3.eth.Contract(abi, contractAddress)
+      // calling the retrieve function which will defined in the smart contract in the Storage.sol file
       let value =await contract.methods.retrieve().call()
+      // the result is assigned to the balance variable to reflect in the UI
       this.balance = value;
 
     },
@@ -72,6 +78,7 @@ export default {
       let contractAddress = "xdc4E09655eA0C15f2c40F22816d59E1a9Bf529627d"
       var abi = require('./abi.json');
       let contract = new web3.eth.Contract(abi, contractAddress)
+      // the store method defined in the smart contract Storage.sol is called and the integer value is passed to the funtion also the wallet address of the sender is specified
       let result = await contract.methods.store(this.input).send({from:'xdc4a0ff01c148baac9f0e944439627b175d1c5280b'});
       console.log(result);
     }

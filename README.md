@@ -11,3 +11,4 @@ How to test the code
 3. go to ui folder and install dependencies using "npm install " or npm init, if you don't have nuxt.js please install it too
 4. use the smartcontract address in the code in the line 64 in index.vue file under the pages folder inside ui folder in the project folder
 5. in the line 75 the send funtion argument please replace the value agains the 'from' key with your wallet id 
+6. during the store function call wait until the transaction is completed and notification is poped up in the chrome window
