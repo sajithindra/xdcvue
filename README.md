@@ -7,8 +7,7 @@ The smartcontract used in the example is Storage.sol which can be found inside t
 How to test the code 
 
 1. compile the Storage.sol in the remix
-2. go to the xdc blockscan and find out your smart contract address 
-3. go to ui folder and install dependencies using "npm install " or npm init, if you don't have nuxt.js please install it too
-4. use the smartcontract address in the code in the line 64 in index.vue file under the pages folder inside ui folder in the project folder
-5. in the line 75 the send funtion argument please replace the value agains the 'from' key with your wallet id 
-6. during the store function call wait until the transaction is completed and notification is poped up in the chrome window
+2. go to ui folder and install dependencies using "npm install " or npm init, if you don't have nuxt.js please install it too
+3. use the smartcontract address in the code in the line 64 in index.vue file under the pages folder inside ui folder in the project folder
+4. in the line 75 the send funtion argument please replace the value agains the 'from' key with your wallet id 
+5. during the store function call wait until the transaction is completed and notification is poped up in the chrome window
